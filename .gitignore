@@ -1,0 +1,13 @@
+nbproject/private/
+nbproject/private.properties
+nbproject/private.xml
+
+build/
+dist/
+
+*.class
+*.log
+.DS_Store
+Thumbs.db
+
+bccr.properties
