@@ -1,0 +1,20 @@
+# NetBeans
+nbproject/private/
+nbproject/private.properties
+nbproject/private.xml
+
+# Build output
+build/
+dist/
+
+# Logs
+*.log
+
+# Mac
+.DS_Store
+
+# Windows
+Thumbs.db
+
+# IDE temp
+*.class
