@@ -1,20 +1,33 @@
+############################
 # NetBeans
+############################
 nbproject/private/
 nbproject/private.properties
 nbproject/private.xml
 
+############################
 # Build output
+############################
 build/
 dist/
 
+############################
+# Compiled classes
+############################
+*.class
+
+############################
 # Logs
+############################
 *.log
 
-# Mac
+############################
+# OS files
+############################
 .DS_Store
-
-# Windows
 Thumbs.db
 
-# IDE temp
-*.class
+############################
+# Local configuration (NO SUBIR TOKEN)
+############################
+bccr.properties
