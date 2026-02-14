@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog" prefer="system">
+    <system systemId="https://gee.bccr.fi.cr/Indicadores/Suscripciones/WS/wsindicadoreseconomicos.asmx?WSDL" uri="xml-resources/web-service-references/wsindicadoreseconomicos/wsdl/gee.bccr.fi.cr/Indicadores/Suscripciones/WS/wsindicadoreseconomicos.asmx.wsdl"/>
+    <system systemId="file:/C:/Users/betac/OneDrive/Documents/ULatinaChris/TercerCuatri/Base%20De%20Datos%201/Proyecto/cliente-bccr-indicadores/wsdl/wsindicadoreseconomicos.wsdl" uri="xml-resources/web-service-references/wsindicadoreseconomicos/wsdl/wsindicadoreseconomicos.wsdl"/>
+</catalog>
