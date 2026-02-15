@@ -35,9 +35,14 @@ public class IndicadorEconomico {
         return nombreIndicador;
     }
 
-    @Override
-    public String toString() {
-        // Útil para depurar rápido o imprimir en JTextArea.
-        return fecha + " -> " + valor;
-    }
+  @Override
+public String toString() {
+    java.text.NumberFormat formato =
+            java.text.NumberFormat.getNumberInstance();
+    formato.setMinimumFractionDigits(2);
+    formato.setMaximumFractionDigits(2);
+
+    return fecha + " -> " + formato.format(valor);
+}
+
 }

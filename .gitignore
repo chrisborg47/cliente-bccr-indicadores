@@ -1,0 +1,45 @@
+<<<<<<< HEAD
+=======
+############################
+# NetBeans
+############################
+nbproject/private/
+nbproject/private.properties
+nbproject/private.xml
+
+<<<<<<< HEAD
+build/
+dist/
+
+*.class
+*.log
+.DS_Store
+Thumbs.db
+
+=======
+############################
+# Build output
+############################
+build/
+dist/
+
+############################
+# Compiled classes
+############################
+*.class
+
+############################
+# Logs
+############################
+*.log
+
+############################
+# OS files
+############################
+.DS_Store
+Thumbs.db
+
+############################
+# Local configuration (NO SUBIR TOKEN)
+############################
+bccr.properties
