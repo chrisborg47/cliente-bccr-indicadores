@@ -19,7 +19,7 @@ public class Main {
             // 🔹 1) Cargar configuración (nombre, correo, token)
             BccrConfig config = new BccrConfig("bccr.properties");
 
-            // 🔹 2) Infraestructura real (SOAP + Parser)
+            // 🔹 2) Infraestructura (SOAP + Parser)
             BccrSoapClient soapClient = new BccrSoapClientJaxWs(config);
             IndicadoresXmlParser parser = new IndicadoresXmlParserDomXPath();
 
