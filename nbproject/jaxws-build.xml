@@ -19,7 +19,7 @@
     <target name="wsimport-client-wsindicadoreseconomicos" depends="wsimport-init">
         <mkdir dir="${build.generated.dir}/jax-wsCache/wsindicadoreseconomicos"/>
         <property name="wsdl-wsindicadoreseconomicos" location="xml-resources/web-service-references/wsindicadoreseconomicos/wsdl/wsindicadoreseconomicos.wsdl"/>
-        <wsimport sourcedestdir="${build.generated.dir}/jax-wsCache/wsindicadoreseconomicos" destdir="${build.generated.dir}/jax-wsCache/wsindicadoreseconomicos" wsdl="${wsdl-wsindicadoreseconomicos}" catalog="catalog.xml" encoding="${source.encoding}" extension="true" verbose="true" fork="false" wsdlLocation="file:/C:/Users/betac/OneDrive/Documents/ULatinaChris/TercerCuatri/Base%20De%20Datos%201/Proyecto/cliente-bccr-indicadores/wsdl/wsindicadoreseconomicos.wsdl" xnocompile="true" xendorsed="true" package="cr.ac.ulatinabccr.ws">
+        <wsimport sourcedestdir="${build.generated.dir}/jax-wsCache/wsindicadoreseconomicos" destdir="${build.generated.dir}/jax-wsCache/wsindicadoreseconomicos" wsdl="${wsdl-wsindicadoreseconomicos}" catalog="catalog.xml" encoding="${source.encoding}" extension="true" verbose="true" fork="false" wsdlLocation="file:/C:/Users/betac/OneDrive/Documents/ULatinaChris/TercerCuatri/Base%20De%20Datos%201/Proyecto/cliente-bccr-indicadores/wsdl/wsindicadoreseconomicos.wsdl" xnocompile="true" package="cr.ac.ulatinabccr.ws">
             <depends file="${wsdl-wsindicadoreseconomicos}"/>
             <produces dir="${build.generated.dir}/jax-wsCache/wsindicadoreseconomicos"/>
         </wsimport>

@@ -9,6 +9,7 @@ import java.util.List;
 
 import javax.xml.parsers.DocumentBuilderFactory;
 import org.w3c.dom.Document;
+import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 
 public class IndicadoresXmlParserDomXPath implements IndicadoresXmlParser {
@@ -17,38 +18,63 @@ public class IndicadoresXmlParserDomXPath implements IndicadoresXmlParser {
     public List<IndicadorEconomico> parse(String xml, int codigoIndicador) throws Exception {
         List<IndicadorEconomico> lista = new ArrayList<>();
 
+        if (xml == null || xml.isBlank()) {
+            return lista;
+        }
+
         DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
-        dbf.setNamespaceAware(false); // para el mock simple
+        dbf.setNamespaceAware(false); // tu XML real no trae xmlns en lo que imprimiste
 
         Document doc = dbf.newDocumentBuilder().parse(
                 new ByteArrayInputStream(xml.getBytes(StandardCharsets.UTF_8))
         );
 
-        NodeList registros = doc.getElementsByTagName("Registro");
+        // ✅ XML REAL del BCCR: INGC011_CAT_INDICADORECONOMIC repetido
+        NodeList registros = doc.getElementsByTagName("INGC011_CAT_INDICADORECONOMIC");
+
         for (int i = 0; i < registros.getLength(); i++) {
-            var registro = registros.item(i);
+            Element registro = (Element) registros.item(i);
 
-            // Buscar hijos por nombre
-            String fecha = null;
-            String valorStr = null;
+            // Hijos directos
+            String fechaIso = getText(registro, "DES_FECHA");     // 2024-01-01T00:00:00-06:00
+            String valorStr = getText(registro, "NUM_VALOR");     // 526.88000000
 
-            NodeList hijos = registro.getChildNodes();
-            for (int j = 0; j < hijos.getLength(); j++) {
-                var n = hijos.item(j);
-                if (n.getNodeType() != org.w3c.dom.Node.ELEMENT_NODE) continue;
-
-                switch (n.getNodeName()) {
-                    case "Fecha" -> fecha = n.getTextContent().trim();
-                    case "Valor" -> valorStr = n.getTextContent().trim();
-                }
+            if (fechaIso == null || valorStr == null) {
+                continue;
             }
 
-            if (fecha != null && valorStr != null) {
-                BigDecimal valor = new BigDecimal(valorStr);
-                lista.add(new IndicadorEconomico(fecha, valor, codigoIndicador, null));
-            }
+            // Convertir fecha ISO a dd/MM/yyyy (sin meter dependencias raras)
+            String fecha = convertirFecha(fechaIso);
+
+            BigDecimal valor = new BigDecimal(valorStr);
+
+            // Tu modelo: IndicadorEconomico(fecha, valor, codigoIndicador, null)
+            lista.add(new IndicadorEconomico(fecha, valor, codigoIndicador, null));
         }
 
         return lista;
+    }
+
+    private static String getText(Element parent, String tag) {
+        NodeList nodes = parent.getElementsByTagName(tag);
+        if (nodes == null || nodes.getLength() == 0) return null;
+        return nodes.item(0).getTextContent().trim();
+    }
+
+    /**
+     * Convierte "2024-01-01T00:00:00-06:00" a "01/01/2024".
+     * Si el formato cambia, devuelve el string original.
+     */
+    private static String convertirFecha(String fechaIso) {
+        try {
+            // Tomamos solo YYYY-MM-DD
+            String ymd = fechaIso.substring(0, 10); // "2024-01-01"
+            String yyyy = ymd.substring(0, 4);
+            String mm = ymd.substring(5, 7);
+            String dd = ymd.substring(8, 10);
+            return dd + "/" + mm + "/" + yyyy;
+        } catch (Exception e) {
+            return fechaIso;
+        }
     }
 }
